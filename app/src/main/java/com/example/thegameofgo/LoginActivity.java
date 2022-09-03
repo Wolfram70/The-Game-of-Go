@@ -47,37 +47,41 @@ public class LoginActivity extends AppCompatActivity {
 
             String susername = username.getText().toString();
             String spassword = password.getText().toString();
+            if(susername.isEmpty() || spassword.isEmpty()){
+                warning.setText("All the fields must be filled before logging in");
+            }
+            else {
+                DocumentReference newPlayerRef = db.collection("players").document(susername);
+                newPlayerRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()){
+                                //player p = document.toObject(player.class);
+                                String comparePassword = document.get("password").toString();
+                                if(spassword.equals(comparePassword)){
+                                    SharedPreferences preferences = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putString("username", susername);
+                                    editor.putBoolean("isloggedin", true);
+                                    editor.commit();
 
-            DocumentReference newPlayerRef = db.collection("players").document(susername);
-            newPlayerRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if(task.isSuccessful()){
-                        DocumentSnapshot document = task.getResult();
-                        if(document.exists()){
-                            //player p = document.toObject(player.class);
-                            String comparePassword = document.get("password").toString();
-                            if(spassword.equals(comparePassword)){
-                                SharedPreferences preferences = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString("username", susername);
-                                editor.putBoolean("isloggedin", true);
-                                editor.commit();
-
-                                finish();
-                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(i);
+                                    finish();
+                                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(i);
+                                } else {
+                                    warning.setText(R.string.wrongdetails);
+                                }
                             } else {
                                 warning.setText(R.string.wrongdetails);
                             }
                         } else {
-                            warning.setText(R.string.wrongdetails);
+                            warning.setText("get failed");
                         }
-                    } else {
-                        warning.setText("get failed");
                     }
-                }
-            });
+                });
+            }
 
             login.setBackgroundResource(R.drawable.login_btn_bg);
         });
