@@ -74,6 +74,30 @@ public class MainActivity extends AppCompatActivity {
         // show the logout dialog
         dialog.show();
     }
+    public void onlinePlayDialog() {
+
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.online_play_dialog);
+
+        TextView create_btn = (TextView) dialog.findViewById(R.id.create);
+        TextView join_btn = (TextView) dialog.findViewById(R.id.join);
+
+        create_btn.setOnClickListener(v -> {
+            dialog.dismiss();
+            Dialog dialog1 = new Dialog(MainActivity.this);
+            dialog1.setContentView(R.layout.game_id_dialog);
+            dialog1.show();
+        });
+
+        join_btn.setOnClickListener(v -> {
+            dialog.dismiss();
+            Dialog dialog1 = new Dialog(MainActivity.this);
+            dialog1.setContentView(R.layout.join_game_dialog);
+            dialog1.show();
+        });
+
+        dialog.show();
+    }
 
     @Override
     public void onBackPressed() {
@@ -97,6 +121,15 @@ public class MainActivity extends AppCompatActivity {
 
         Button set_btn = (Button) findViewById(R.id.options);
         Button exit = (Button) findViewById(R.id.Exit);
+        Button online_play = (Button) findViewById(R.id.online_play);
+        Button offline_play = (Button) findViewById(R.id.offline_play);
+        online_play.setOnClickListener(view -> onlinePlayDialog());
+
+        offline_play.setOnClickListener(view -> {
+            Intent i = new Intent(getApplicationContext(), OfflineGameplayActivity.class);
+            finish();
+            startActivity(i);
+        });
 
         TextView logInfo = (TextView) findViewById(R.id.LoginInfo);
         logInfo.setText(logUsername);
