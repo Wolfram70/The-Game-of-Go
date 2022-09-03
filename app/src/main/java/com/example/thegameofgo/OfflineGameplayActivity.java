@@ -144,8 +144,6 @@ public class OfflineGameplayActivity extends AppCompatActivity {
         buttons.put(R.id.button48, 48);
 
         revButtons = buttons.inverse();
-
-        set();
     }
 
     public void onClick(View v){
@@ -168,13 +166,20 @@ public class OfflineGameplayActivity extends AppCompatActivity {
             board[position] = 2;
         }
 
-        set();
-
-        whiteturn = !whiteturn;
+        if(set(position)){
+            whiteturn = !whiteturn;
+        }
     }
 
-    public void set(){
-        //capture algo
+    public boolean set(int change){
+        int newColor;
+        removeCaptures(7);
+        newColor = board[change];
+
+        if(newColor == 0)
+        {
+            return false;
+        }
         int color, id;
 
         for(int i = 0; i < 49; i++){
@@ -191,5 +196,119 @@ public class OfflineGameplayActivity extends AppCompatActivity {
                 default: break;
             }
         }
+
+        return true;
+    }
+
+    public void removeCaptures(int boardSize)
+    {
+        int toKeep[] = new int[boardSize * boardSize];
+        boolean changed = true;
+        for(int i = 0; i < boardSize; i++)
+        {
+            for(int j = 0; j < boardSize; j++)
+            {
+                toKeep[boardSize * i + j] = 0;
+            }
+        }
+        for(int i = 0; i < boardSize; i++)
+        {
+            for(int j = 0; j < boardSize; j++)
+            {
+                if(board[boardSize * i + j] == 0)
+                {
+                    toKeep[boardSize * i + j] = 1;
+                }
+            }
+        }
+
+        int temp;
+
+        while(changed)
+        {
+            changed = false;
+            for(int i = 0; i < boardSize; i++)
+            {
+                for(int j = 0; j < boardSize; j++)
+                {
+                    if(toKeep[boardSize * i + j] != 0)
+                    {
+                        if(board[boardSize * i + j] == 0)
+                        {
+                            if((i - 1) >= 0)
+                            {
+                                if(toKeep[boardSize * (i - 1) + j] == 0) {
+                                    changed = true;
+                                }
+                                toKeep[boardSize * (i - 1) + j] = 1;
+                            }
+                            if((j - 1) >= 0)
+                            {
+                                if(toKeep[boardSize * i + j - 1] == 0) {
+                                    changed = true;
+                                }
+                                toKeep[boardSize * i + j - 1] = 1;
+                            }
+                            if((i + 1) < boardSize)
+                            {
+                                if(toKeep[boardSize * (i + 1) + j] == 0) {
+                                    changed = true;
+                                }
+                                toKeep[boardSize * (i + 1) + j] = 1;
+                            }
+                            if((j + 1) < boardSize)
+                            {
+                                if(toKeep[boardSize * i + j + 1] == 0) {
+                                    changed = true;
+                                }
+                                toKeep[boardSize * i + j + 1] = 1;
+                            }
+                        }
+                        else
+                        {
+                            temp = board[boardSize * i + j];
+                            if(((i - 1) >= 0) && (board[boardSize * (i - 1) + j] == temp))
+                            {
+                                if(toKeep[boardSize * (i - 1) + j] == 0) {
+                                    changed = true;
+                                }
+                                toKeep[boardSize * (i - 1) + j] = 1;
+                            }
+                            if(((j - 1) >= 0) && (board[boardSize * i + j - 1] == temp))
+                            {
+                                if(toKeep[boardSize * i + j - 1] == 0) changed = true;
+                                toKeep[boardSize * i + j - 1] = 1;
+                            }
+                            if(((i + 1) < boardSize) && (board[boardSize * (i + 1) + j] == temp))
+                            {
+                                if(toKeep[boardSize * (i + 1) + j] == 0) changed = true;
+                                toKeep[boardSize * (i + 1) + j] = 1;
+                            }
+                            if(((j + 1) < boardSize) && (board[boardSize * i + j + 1] == temp))
+                            {
+                                if(toKeep[boardSize * i + j + 1] == 0) changed = true;
+                                toKeep[boardSize * i + j + 1] = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        for(int i = 0; i < boardSize; i++)
+        {
+            for(int j = 0; j < boardSize; j++)
+            {
+                if(toKeep[boardSize * i + j] == 0)
+                {
+                    board[boardSize * i + j] = 0;
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        PauseDialog();
     }
 }

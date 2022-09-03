@@ -215,7 +215,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -226,7 +226,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -237,7 +237,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -248,7 +248,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -259,7 +259,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -270,7 +270,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="220dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -281,7 +281,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="264dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -291,7 +291,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         android:onClick="onClick"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -303,7 +303,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -314,7 +314,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -325,7 +325,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -336,7 +336,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -347,7 +347,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="220dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -358,7 +358,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="264dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -368,7 +368,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="96dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         android:onClick="onClick"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -380,7 +380,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="96dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -391,7 +391,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="96dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -402,7 +402,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="96dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -413,7 +413,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="96dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -424,7 +424,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="220dp"
         android:layout_marginTop="96dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -435,7 +435,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="264dp"
         android:layout_marginTop="96dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -445,7 +445,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="136dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         android:onClick="onClick"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -457,7 +457,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="136dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -468,7 +468,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="136dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -479,7 +479,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="136dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -490,7 +490,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="136dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -501,7 +501,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="220dp"
         android:layout_marginTop="136dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -512,7 +512,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="264dp"
         android:layout_marginTop="136dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -522,7 +522,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="180dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         android:onClick="onClick"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -534,7 +534,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="180dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -545,7 +545,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="180dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -556,7 +556,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="180dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -567,7 +567,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="180dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -578,7 +578,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="220dp"
         android:layout_marginTop="180dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -589,7 +589,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="264dp"
         android:layout_marginTop="180dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -599,7 +599,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="224dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         android:onClick="onClick"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -611,7 +611,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="224dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -622,7 +622,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="224dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -633,7 +633,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="224dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -644,7 +644,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="224dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -655,7 +655,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="220dp"
         android:layout_marginTop="224dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -666,7 +666,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="264dp"
         android:layout_marginTop="224dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -676,7 +676,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="264dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         android:onClick="onClick"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -688,7 +688,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="264dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -699,7 +699,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="264dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -710,7 +710,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="264dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -721,7 +721,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="264dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -732,7 +732,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="220dp"
         android:layout_marginTop="264dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -743,7 +743,7 @@
         android:layout_height="34dp"
         android:layout_marginStart="264dp"
         android:layout_marginTop="264dp"
-        android:background="@drawable/white"
+        android:background="@drawable/gplay_panel"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
