@@ -81,32 +81,36 @@ public class SignupActivity extends AppCompatActivity {
             String spassword = password.getText().toString();
             String scpassword = cpassword.getText().toString();
 
-            if(spassword.equals(scpassword)){
-                warning.setText(R.string.empty);
+            if(sname.isEmpty() || semail.isEmpty() || spassword.isEmpty() || scpassword.isEmpty()){
+                warning.setText("All the fields must be filled before signing up.");
+            } else {
+                if(spassword.equals(scpassword)){
+                    warning.setText(R.string.empty);
 
-                DocumentReference newPlayerRef = db.collection("players").document(sname);
-                newPlayerRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
-                            DocumentSnapshot document = task.getResult();
-                            if(document.exists()){
-                                warning.setText(R.string.useralreadyexists);
+                    DocumentReference newPlayerRef = db.collection("players").document(sname);
+                    newPlayerRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.isSuccessful()){
+                                DocumentSnapshot document = task.getResult();
+                                if(document.exists()){
+                                    warning.setText(R.string.useralreadyexists);
+                                } else {
+                                    player p = new player(sname, semail, spassword, 0, 0);
+                                    newPlayerRef.set(p);
+                                    finish();
+                                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                                    startActivity(i);
+                                }
                             } else {
-                                player p = new player(sname, semail, spassword, 0, 0);
-                                newPlayerRef.set(p);
-                                finish();
-                                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-                                startActivity(i);
+                                warning.setText("get failed");
                             }
-                        } else {
-                            warning.setText("get failed");
                         }
-                    }
-                });
-            }
-            else{
-                warning.setText(R.string.nomatch);
+                    });
+                }
+                else{
+                    warning.setText(R.string.nomatch);
+                }
             }
 
             signup.setBackgroundResource(R.drawable.login_btn_bg);
