@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
             String susername = username.getText().toString();
             String spassword = password.getText().toString();
-
             if(susername.isEmpty() || spassword.isEmpty()){
                 warning.setText("All the fields must be filled before logging in");
             }
