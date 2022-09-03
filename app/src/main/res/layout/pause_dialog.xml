@@ -51,22 +51,7 @@
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/home_icon" />
 
-        <!-- Resign -->
-        <TextView
-            android:id="@+id/resign"
-            android:layout_width="180dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/popup_btn"
-            android:paddingHorizontal="20dp"
-            android:elevation="8dp"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:text="Resign"
-            android:textColor="@color/white"
-            app:drawableStartCompat="@drawable/resign" />
+
 
         <!-- Exit -->
         <TextView

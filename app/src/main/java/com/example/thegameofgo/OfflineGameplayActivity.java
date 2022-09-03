@@ -19,7 +19,6 @@ public class OfflineGameplayActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.pause_dialog);
 
         TextView main_menu = (TextView) dialog.findViewById(R.id.main_menu);
-        TextView resign = (TextView) dialog.findViewById(R.id.resign);
         TextView exit_game = (TextView) dialog.findViewById(R.id.exit_game);
         TextView back = (TextView) dialog.findViewById(R.id.back);
 
@@ -48,39 +47,20 @@ public class OfflineGameplayActivity extends AppCompatActivity {
 
         });
 
-//        exit_game.setOnClickListener(v -> {
-//            dialog.dismiss();
-//
-//            Dialog dialog1 = new Dialog(OfflineGameplayActivity.this);
-//            dialog1.getWindow().setBackgroundDrawableResource(R.color.trans);
-//            dialog1.setContentView(R.layout.);
-//
-//            dialog1.show();
-//
-//        });
-
-        back.setOnClickListener(v -> {
-            dialog.dismiss();
-        });
-
-        resign.setOnClickListener(v -> {
+        exit_game.setOnClickListener(v -> {
             dialog.dismiss();
 
             Dialog dialog1 = new Dialog(OfflineGameplayActivity.this);
             dialog1.getWindow().setBackgroundDrawableResource(R.color.trans);
-            dialog1.setContentView(R.layout.resign_dialog);
-
-            TextView no = (TextView) dialog1.findViewById(R.id.no);
-
-            no.setOnClickListener(vi -> {
-                dialog1.dismiss();
-            });
+            dialog1.setContentView(R.layout.exit_dialog);
 
             dialog1.show();
+
         });
 
-
-
+        back.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
 
         dialog.show();
     }
