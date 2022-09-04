@@ -4,9 +4,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +16,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+
+    public AlphaAnimation clickAnimation() {
+        return new AlphaAnimation(1F, 0.4F); // Change "0.4F" as per your recruitment.
+    }
 
     public void customPlayOfflineDialog() {
         final Dialog dialog = new Dialog(MainActivity.this);
@@ -25,8 +31,10 @@ public class MainActivity extends AppCompatActivity {
         TextView player_2 = dialog.findViewById(R.id.player_2);
 
         Button go = (Button) dialog.findViewById(R.id.play);
-
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.short_click);
         go.setOnClickListener(view -> {
+            go.startAnimation(clickAnimation());
+            mp.start();
             String name_1  = player_1.getText().toString();
             String name_2 = player_2.getText().toString();
 
@@ -54,20 +62,21 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     public void customLogoutDialog() {
         // creating custom dialog
         final Dialog dialog = new Dialog(MainActivity.this);
 
         // setting content view to dialog
         dialog.setContentView(R.layout.logout_dialog);
-
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.short_click);
         // getting reference of TextView
         TextView dialogButtonYes = (TextView) dialog.findViewById(R.id.textViewYes);
         TextView dialogButtonNo = (TextView) dialog.findViewById(R.id.textViewNo);
 
         // click listener for No
         dialogButtonNo.setOnClickListener(v -> {
+            dialogButtonNo.startAnimation(clickAnimation());
+            mp.start();
             // dismiss the dialog
             dialog.dismiss();
 
@@ -75,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         // click listener for Yes
         dialogButtonYes.setOnClickListener(v -> {
             // dismiss the dialog and exit the exit
+            dialogButtonYes.startAnimation(clickAnimation());
+            mp.start();
             SharedPreferences preferences = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("username", "Guest");
@@ -94,19 +105,23 @@ public class MainActivity extends AppCompatActivity {
 
         // setting content view to dialog
         dialog.setContentView(R.layout.exit_dialog);
-
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.short_click);
         // getting reference of TextView
         TextView dialogButtonYes = (TextView) dialog.findViewById(R.id.textViewYes);
         TextView dialogButtonNo = (TextView) dialog.findViewById(R.id.textViewNo);
 
         // click listener for No
         dialogButtonNo.setOnClickListener(v -> {
+            dialogButtonNo.startAnimation(clickAnimation());
+            mp.start();
             // dismiss the dialog
             dialog.dismiss();
 
         });
         // click listener for Yes
         dialogButtonYes.setOnClickListener(v -> {
+            dialogButtonYes.startAnimation(clickAnimation());
+            mp.start();
             // dismiss the dialog and exit the exit
             dialog.dismiss();
             finish();
@@ -119,11 +134,13 @@ public class MainActivity extends AppCompatActivity {
 
         final Dialog dialog = new Dialog(MainActivity.this);
         dialog.setContentView(R.layout.online_play_dialog);
-
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.short_click);
         TextView create_btn = (TextView) dialog.findViewById(R.id.create);
         TextView join_btn = (TextView) dialog.findViewById(R.id.join);
 
         create_btn.setOnClickListener(v -> {
+            create_btn.startAnimation(clickAnimation());
+            mp.start();
             dialog.dismiss();
             Dialog dialog1 = new Dialog(MainActivity.this);
             dialog1.setContentView(R.layout.game_id_dialog);
@@ -131,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         join_btn.setOnClickListener(v -> {
+            join_btn.startAnimation(clickAnimation());
+            mp.start();
             dialog.dismiss();
             Dialog dialog1 = new Dialog(MainActivity.this);
             dialog1.setContentView(R.layout.join_game_dialog);
@@ -142,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.short_click);
+        mp.start();
         customExitDialog();
     }
 
@@ -165,14 +186,18 @@ public class MainActivity extends AppCompatActivity {
         Button online_play = (Button) findViewById(R.id.online_play);
         Button offline_play = (Button) findViewById(R.id.offline_play);
         Button howToPlay = (Button) findViewById(R.id.how_to_play);
-        online_play.setOnClickListener(view -> onlinePlayDialog());
 
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
         howToPlay.setOnClickListener(view2 -> {
+            mp.start();
+            howToPlay.startAnimation(clickAnimation());
             Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("https://www.britgo.org/intro/intro2.html"));
             startActivity(viewIntent);
         });
 
         offline_play.setOnClickListener(view -> {
+            mp.start();
+            offline_play.startAnimation(clickAnimation());
             customPlayOfflineDialog();
         });
 
@@ -180,12 +205,23 @@ public class MainActivity extends AppCompatActivity {
         logInfo.setText(logUsername);
 
         set_btn.setOnClickListener(v -> {
+            mp.start();
+            set_btn.startAnimation(clickAnimation());
             Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(i);
         });
 
         //for online play, check isLoggedIn, if false, redirect to signup
+        online_play.setOnClickListener(view -> {
+            mp.start();
+            online_play.startAnimation(clickAnimation());
+            onlinePlayDialog();
+        });
 
-        exit.setOnClickListener(view -> customLogoutDialog());
+        exit.setOnClickListener(view -> {
+            mp.start();
+                exit.startAnimation(clickAnimation());
+                customLogoutDialog();
+        });
     }
 }

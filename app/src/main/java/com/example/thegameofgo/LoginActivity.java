@@ -3,10 +3,12 @@ package com.example.thegameofgo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,8 +26,14 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    public AlphaAnimation clickAnimation() {
+        return new AlphaAnimation(1F, 0.4F); // Change "0.4F" as per your recruitment.
+    }
+
     @Override
     public void onBackPressed() {
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
+        mp.start();
         finish();
         Intent i = new Intent(getApplicationContext(), SignupActivity.class);
         startActivity(i);
@@ -41,16 +49,18 @@ public class LoginActivity extends AppCompatActivity {
         TextView warning = (TextView) findViewById(R.id.warning);
 
         Button login = (Button) findViewById(R.id.loginBtn);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
 
         login.setOnClickListener(v -> {
-            login.setBackgroundResource(R.drawable.login_btn_bg_pressed);
-
+            login.setAnimation(clickAnimation());
+            mp.start();
             String susername = username.getText().toString();
             String spassword = password.getText().toString();
             if(susername.isEmpty() || spassword.isEmpty()){
                 warning.setText("All the fields must be filled before logging in");
             }
             else {
+                login.setAnimation(clickAnimation());
                 DocumentReference newPlayerRef = db.collection("players").document(susername);
                 newPlayerRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override

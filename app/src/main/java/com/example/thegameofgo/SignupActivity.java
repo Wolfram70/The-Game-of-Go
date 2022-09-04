@@ -2,7 +2,9 @@ package com.example.thegameofgo;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,9 +22,16 @@ public class SignupActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    public AlphaAnimation clickAnimation() {
+        return new AlphaAnimation(1F, 0.4F); // Change "0.4F" as per your recruitment.
+    }
+
     public void customExitDialog() {
         // creating custom dialog
         final Dialog dialog = new Dialog(SignupActivity.this);
+
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.short_click);
+
 
         // setting content view to dialog
         dialog.setContentView(R.layout.exit_dialog);
@@ -33,13 +42,18 @@ public class SignupActivity extends AppCompatActivity {
 
         // click listener for No
         dialogButtonNo.setOnClickListener(v -> {
+            dialogButtonNo.startAnimation(clickAnimation());
+            mp.start();
             // dismiss the dialog
             dialog.dismiss();
+
 
         });
         // click listener for Yes
         dialogButtonYes.setOnClickListener(v -> {
             // dismiss the dialog and exit the exit
+            dialogButtonYes.startAnimation(clickAnimation());
+            mp.start();
             dialog.dismiss();
             finish();
         });
@@ -50,6 +64,8 @@ public class SignupActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
+        mp.start();
         customExitDialog();
     }
 
@@ -66,14 +82,19 @@ public class SignupActivity extends AppCompatActivity {
 
         Button signup = (Button) findViewById(R.id.button);
         Button alreadysignup = (Button) findViewById(R.id.alreadysigned);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.short_click);
 
         alreadysignup.setOnClickListener(v -> {
+            alreadysignup.startAnimation(clickAnimation());
+            mp.start();
             finish();
             Intent i = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(i);
         });
 
         signup.setOnClickListener(v -> {
+            signup.startAnimation(clickAnimation());
+            mp.start();
             signup.setBackgroundResource(R.drawable.login_btn_bg_pressed);
 
             String sname = name.getText().toString();

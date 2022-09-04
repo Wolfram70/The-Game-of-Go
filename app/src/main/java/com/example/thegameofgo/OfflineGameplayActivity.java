@@ -6,9 +6,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +23,10 @@ import java.util.Map;
 
 public class OfflineGameplayActivity extends AppCompatActivity {
 
+    public AlphaAnimation clickAnimation() {
+        return new AlphaAnimation(1F, 0.4F); // Change "0.4F" as per your recruitment.
+    }
+
     public void PauseDialog() {
         final Dialog dialog = new Dialog(OfflineGameplayActivity.this);
         dialog.getWindow().setBackgroundDrawableResource(R.color.trans);
@@ -31,8 +37,11 @@ public class OfflineGameplayActivity extends AppCompatActivity {
         TextView exit_game = (TextView) dialog.findViewById(R.id.exit_game);
         TextView back = (TextView) dialog.findViewById(R.id.back);
 
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.short_click);
 
         main_menu.setOnClickListener(v -> {
+            main_menu.startAnimation(clickAnimation());
+            mp.start();
             dialog.dismiss();
             Dialog dialog1= new Dialog(OfflineGameplayActivity.this);
             dialog1.getWindow().setBackgroundDrawableResource(R.color.trans);
@@ -43,10 +52,14 @@ public class OfflineGameplayActivity extends AppCompatActivity {
             TextView yes = (TextView) dialog1.findViewById(R.id.yes);
 
             no.setOnClickListener(view -> {
+                no.startAnimation(clickAnimation());
+                mp.start();
                 dialog1.dismiss();
             });
 
             yes.setOnClickListener(view -> {
+                yes.startAnimation(clickAnimation());
+                mp.start();
                 dialog1.dismiss();
 
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
@@ -57,6 +70,8 @@ public class OfflineGameplayActivity extends AppCompatActivity {
         });
 
         exit_game.setOnClickListener(v -> {
+            exit_game.startAnimation(clickAnimation());
+            mp.start();
             dialog.dismiss();
 
             Dialog dialog1 = new Dialog(OfflineGameplayActivity.this);
@@ -69,16 +84,23 @@ public class OfflineGameplayActivity extends AppCompatActivity {
             TextView yes = (TextView) dialog1.findViewById(R.id.textViewYes);
 
             no.setOnClickListener(vi -> {
+                no.startAnimation(clickAnimation());
+                mp.start();
                 dialog1.dismiss();
             });
 
             yes.setOnClickListener(view -> {
+                yes.startAnimation(clickAnimation());
+                mp.start();
                 dialog1.dismiss();
                 finish();
             });
         });
 
         back.setOnClickListener(v -> {
+            back.startAnimation(clickAnimation());
+            final MediaPlayer mp2 = MediaPlayer.create(this, R.raw.click);
+            mp2.start();
             dialog.dismiss();
         });
 
@@ -133,8 +155,11 @@ public class OfflineGameplayActivity extends AppCompatActivity {
 
         noSu = (TextView) findViewById(R.id.no_su);
         ImageView menu_btn = (ImageView) findViewById(R.id.menu_btn);
-
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
+        final MediaPlayer mp2 = MediaPlayer.create(this, R.raw.short_click);
         menu_btn.setOnClickListener(view -> {
+            menu_btn.startAnimation(clickAnimation());
+            mp.start();
             PauseDialog();
         });
 
@@ -208,9 +233,11 @@ public class OfflineGameplayActivity extends AppCompatActivity {
 
     public void move(int id){
         if(id == Pass1.getId()) {
+            final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
             if(whiteturn) {
                 return;
             }
+            mp.start();
             whiteturn = !whiteturn;
             playerPanel2.setBackgroundResource(R.drawable.gplay_panel_focus);
             playerPanel1.setBackgroundResource(R.drawable.gplay_panel);
@@ -226,9 +253,11 @@ public class OfflineGameplayActivity extends AppCompatActivity {
             return;
         }
         if(id == Pass2.getId()) {
+            final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
             if(!whiteturn){
                 return;
             }
+            mp.start();
             whiteturn = !whiteturn;
             playerPanel1.setBackgroundResource(R.drawable.gplay_panel_focus);
             playerPanel2.setBackgroundResource(R.drawable.gplay_panel);
@@ -243,7 +272,7 @@ public class OfflineGameplayActivity extends AppCompatActivity {
             Pass1.setText("PASS");
             return;
         }
-
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.wood2);
         int position = (int) buttons.get(id);
 
         if(board[position] != 0){
@@ -251,9 +280,11 @@ public class OfflineGameplayActivity extends AppCompatActivity {
         }
 
         if(whiteturn){
+            mp.start();
             board[position] = 1;
         }
         else{
+            mp.start();
             board[position] = 2;
         }
 
