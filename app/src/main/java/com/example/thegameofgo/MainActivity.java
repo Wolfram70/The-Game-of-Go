@@ -1,19 +1,56 @@
 package com.example.thegameofgo;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity {
+
+    public void customPlayOfflineDialog() {
+        final Dialog dialog = new Dialog(MainActivity.this);
+
+        dialog.setContentView(R.layout.offline_options);
+        dialog.getWindow().setBackgroundDrawableResource(R.color.trans);
+
+        TextView player_1 = dialog.findViewById(R.id.player_1);
+        TextView player_2 = dialog.findViewById(R.id.player_2);
+
+        Button go = (Button) dialog.findViewById(R.id.play);
+
+        go.setOnClickListener(view -> {
+            String name_1  = player_1.getText().toString();
+            String name_2 = player_2.getText().toString();
+
+            dialog.dismiss();
+
+            SharedPreferences preference = getSharedPreferences("OfflinePlayers", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preference.edit();
+
+            editor.putString("player1", name_1);
+            editor.putString("player2", name_2);
+            editor.commit();
+
+            Intent i = new Intent(getApplicationContext(), OfflineGameplayActivity.class);
+            finish();
+            startActivity(i);
+
+        });
+
+        dialog.show();
+    }
+
+
+
+
+
     public void customLogoutDialog() {
         // creating custom dialog
         final Dialog dialog = new Dialog(MainActivity.this);
@@ -126,9 +163,7 @@ public class MainActivity extends AppCompatActivity {
         online_play.setOnClickListener(view -> onlinePlayDialog());
 
         offline_play.setOnClickListener(view -> {
-            Intent i = new Intent(getApplicationContext(), OfflineGameplayActivity.class);
-            finish();
-            startActivity(i);
+            customPlayOfflineDialog();
         });
 
         TextView logInfo = (TextView) findViewById(R.id.LoginInfo);

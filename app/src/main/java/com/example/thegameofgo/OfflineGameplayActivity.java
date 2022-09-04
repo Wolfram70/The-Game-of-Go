@@ -3,8 +3,11 @@ package com.example.thegameofgo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -59,9 +62,20 @@ public class OfflineGameplayActivity extends AppCompatActivity {
             Dialog dialog1 = new Dialog(OfflineGameplayActivity.this);
             dialog1.getWindow().setBackgroundDrawableResource(R.color.trans);
             dialog1.setContentView(R.layout.exit_dialog);
-
             dialog1.show();
 
+
+            TextView no = (TextView) dialog1.findViewById(R.id.textViewNo);
+            TextView yes = (TextView) dialog1.findViewById(R.id.textViewYes);
+
+            no.setOnClickListener(vi -> {
+                dialog1.dismiss();
+            });
+
+            yes.setOnClickListener(view -> {
+                dialog1.dismiss();
+                finish();
+            });
         });
 
         back.setOnClickListener(v -> {
@@ -76,11 +90,48 @@ public class OfflineGameplayActivity extends AppCompatActivity {
     static boolean whiteturn = false;
     int board[] = new int[49];
 
+    TextView noSu ;
+    View playerPanel1;
+    View playerPanel2;
+    Boolean alreadyPassed = false;
+    Button Pass1, Pass2;
+    int whiteScore = 0;
+    int blackScore = 0;
+    int blackCaptures = 0;
+    int whiteCaptures = 0;
+    String player_1;
+    String player_2;
+    TextView blackCapturesText;
+    TextView whiteCapturesText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offline_gameplay);
 
+        playerPanel1 = findViewById(R.id.player1panel);
+        playerPanel2 = findViewById(R.id.player2panel);
+
+        Pass1 = findViewById(R.id.user_pass);
+        Pass2 = findViewById(R.id.opp_pass);
+
+        blackCapturesText = findViewById(R.id.user_cptr);
+        whiteCapturesText = findViewById(R.id.opp_cptr);
+
+        blackCapturesText.setText(blackCaptures + "Captures");
+        whiteCapturesText.setText(whiteCaptures + "Captures");
+
+        SharedPreferences preferences = getSharedPreferences("OfflinePlayers", Context.MODE_PRIVATE);
+        player_1 = preferences.getString("player1", "Player 1");
+        player_2 = preferences.getString("player2", "Player 2");
+
+        Button play1 = (Button) findViewById(R.id.player1_name);
+        Button play2 = (Button) findViewById(R.id.player2_name);
+
+        play1.setText(player_1);
+        play2.setText(player_2);
+
+        noSu = (TextView) findViewById(R.id.no_su);
         ImageView menu_btn = (ImageView) findViewById(R.id.menu_btn);
 
         menu_btn.setOnClickListener(view -> {
@@ -150,9 +201,49 @@ public class OfflineGameplayActivity extends AppCompatActivity {
         int id = v.getId();
 
         move(id);
+
+        blackCapturesText.setText(blackCaptures + " Captures");
+        whiteCapturesText.setText(whiteCaptures + " Captures");
     }
 
     public void move(int id){
+        if(id == Pass1.getId()) {
+            if(whiteturn) {
+                return;
+            }
+            whiteturn = !whiteturn;
+            playerPanel2.setBackgroundResource(R.drawable.gplay_panel_focus);
+            playerPanel1.setBackgroundResource(R.drawable.gplay_panel);
+            //change opacity of Pass1 to dull, Pass2 to bright
+            if(alreadyPassed) {
+                endGame();
+            }
+            else {
+                alreadyPassed = true;
+            }
+            Pass1.setText("PASSED");
+            Pass2.setText("PASS");
+            return;
+        }
+        if(id == Pass2.getId()) {
+            if(!whiteturn){
+                return;
+            }
+            whiteturn = !whiteturn;
+            playerPanel1.setBackgroundResource(R.drawable.gplay_panel_focus);
+            playerPanel2.setBackgroundResource(R.drawable.gplay_panel);
+            //change opacity of Pass2 to dull, Pass1 to bright
+            if(alreadyPassed) {
+                endGame();
+            }
+            else {
+                alreadyPassed = true;
+            }
+            Pass2.setText("PASSED");
+            Pass1.setText("PASS");
+            return;
+        }
+
         int position = (int) buttons.get(id);
 
         if(board[position] != 0){
@@ -168,6 +259,19 @@ public class OfflineGameplayActivity extends AppCompatActivity {
 
         if(set(position)){
             whiteturn = !whiteturn;
+            alreadyPassed = false;
+            if(whiteturn) {
+                playerPanel2.setBackgroundResource(R.drawable.gplay_panel_focus);
+                playerPanel1.setBackgroundResource(R.drawable.gplay_panel);
+            }
+            else {
+                playerPanel1.setBackgroundResource(R.drawable.gplay_panel_focus);
+                playerPanel2.setBackgroundResource(R.drawable.gplay_panel);
+            }
+            noSu.setText("");
+        }
+        else {
+            noSu.setText("Suicidal move unallowed.");
         }
     }
 
@@ -203,6 +307,7 @@ public class OfflineGameplayActivity extends AppCompatActivity {
     public void removeCaptures(int boardSize)
     {
         int toKeep[] = new int[boardSize * boardSize];
+        int captures = 0;
         boolean changed = true;
         for(int i = 0; i < boardSize; i++)
         {
@@ -301,10 +406,179 @@ public class OfflineGameplayActivity extends AppCompatActivity {
             {
                 if(toKeep[boardSize * i + j] == 0)
                 {
+                    if(board[boardSize * i + j] != 0) {
+                        captures ++;
+                    }
                     board[boardSize * i + j] = 0;
                 }
             }
         }
+
+        if(whiteturn) {
+            whiteCaptures += captures;
+        }
+        else {
+            blackCaptures += captures;
+        }
+    }
+
+    public void endGame() {
+        whiteScore = calculateScore(7, 1);
+        blackScore = calculateScore(7, 2);
+
+        //endgame dialog here
+        final Dialog dialog = new Dialog(OfflineGameplayActivity.this);
+
+        dialog.setContentView(R.layout.endgame_dialog);
+        dialog.getWindow().setBackgroundDrawableResource(R.color.trans);
+        TextView white_score = (TextView) dialog.findViewById(R.id.white_score);
+        TextView black_score = (TextView) dialog.findViewById(R.id.black_score);
+        TextView player1 = (TextView) dialog.findViewById(R.id.black_player);
+        TextView player2 = (TextView) dialog.findViewById(R.id.white_player);
+        TextView gameResult = (TextView) dialog.findViewById(R.id.game_result);
+        TextView result = (TextView) dialog.findViewById(R.id.result);
+        Button mainMenu = (Button) dialog.findViewById(R.id.back);
+
+        white_score.setText(Integer.toString(whiteScore));
+        black_score.setText(Integer.toString(blackScore));
+
+        player1.setText(player_1);
+        player2.setText(player_2);
+
+        if (whiteScore > blackScore) {
+            int diff = whiteScore - blackScore;
+            result.setText("White Wins !");
+            gameResult.setText(player_1 + " wins by " + diff + " points.");
+        }
+        else if (blackScore > whiteScore) {
+            int diff = blackScore - whiteScore;
+            result.setText("Black Wins !");
+            gameResult.setText(player_2 + " wins by " + diff + " points.");
+        }
+        else {
+            result.setText(" Draw ! ");
+            gameResult.setText("Draw !");
+        }
+        dialog.setCancelable(false);
+        dialog.show();
+
+        mainMenu.setOnClickListener(view ->{
+
+            Dialog dialog1= new Dialog(OfflineGameplayActivity.this);
+            dialog1.getWindow().setBackgroundDrawableResource(R.color.trans);
+            dialog1.setContentView(R.layout.main_menu_confirm);
+            dialog1.show();
+
+            TextView no = (TextView) dialog1.findViewById(R.id.no);
+            TextView yes = (TextView) dialog1.findViewById(R.id.yes);
+
+            no.setOnClickListener(view1 -> {
+                dialog1.dismiss();
+            });
+
+            yes.setOnClickListener(v -> {
+                dialog1.dismiss();
+
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                finish();
+                startActivity(i);
+            });
+        });
+
+    }
+
+    public int calculateScore(int boardSize, int color) {
+        int score = 0, opp = 1, temp;
+        Boolean skip = false;
+
+        if(color == opp) opp = 2;
+
+        for(int i = 0; i < boardSize; i++)
+        {
+            for(int j = 0; j < boardSize; j++)
+            {
+                if(board[boardSize * i + j] == color)
+                {
+                    score++;
+                }
+                else if(board[boardSize * i + j] == 0)
+                {
+                    skip = false;
+
+                    temp = i;
+                    while(temp >= 0)
+                    {
+                        if(board[boardSize * temp + j] == color)
+                        {
+                            break;
+                        }
+                        else if(board[boardSize * temp + j] == opp)
+                        {
+                            skip = true;
+                            break;
+                        }
+
+                        temp--;
+                    }
+                    if(skip) continue;
+
+                    temp = i;
+                    while(temp < boardSize)
+                    {
+                        if(board[boardSize * temp + j] == color)
+                        {
+                            break;
+                        }
+                        else if(board[boardSize * temp + j] == opp)
+                        {
+                            skip = true;
+                            break;
+                        }
+
+                        temp++;
+                    }
+                    if(skip) continue;
+
+                    temp = j;
+                    while(temp >= 0)
+                    {
+                        if(board[boardSize * i + temp] == color)
+                        {
+                            break;
+                        }
+                        else if(board[boardSize * i + temp] == opp)
+                        {
+                            skip = true;
+                            break;
+                        }
+
+                        temp--;
+                    }
+                    if(skip) continue;
+
+                    temp = j;
+                    while(temp < boardSize)
+                    {
+                        if(board[boardSize * i + temp] == color)
+                        {
+                            break;
+                        }
+                        else if(board[boardSize * i + temp] == opp)
+                        {
+                            skip = true;
+                            break;
+                        }
+
+                        temp++;
+                    }
+                    if(skip) continue;
+
+                    score++;
+                }
+            }
+        }
+
+        return score;
     }
 
     @Override
