@@ -450,12 +450,12 @@ public class OfflineGameplayActivity extends AppCompatActivity {
         if (whiteScore > blackScore) {
             int diff = whiteScore - blackScore;
             result.setText("White Wins !");
-            gameResult.setText(player_1 + " wins by " + diff + " points.");
+            gameResult.setText(player_2 + " wins by " + diff + " points.");
         }
         else if (blackScore > whiteScore) {
             int diff = blackScore - whiteScore;
             result.setText("Black Wins !");
-            gameResult.setText(player_2 + " wins by " + diff + " points.");
+            gameResult.setText(player_1 + " wins by " + diff + " points.");
         }
         else {
             result.setText(" Draw ! ");
