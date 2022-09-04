@@ -13,7 +13,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
         dialog.show();
     }
-
-
-
 
     public void customLogoutDialog() {
         // creating custom dialog
@@ -138,13 +145,33 @@ public class MainActivity extends AppCompatActivity {
         TextView create_btn = (TextView) dialog.findViewById(R.id.create);
         TextView join_btn = (TextView) dialog.findViewById(R.id.join);
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        SharedPreferences preferences = getSharedPreferences("onlineInfo", Context.MODE_PRIVATE);
+        SharedPreferences preferencesLogin = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
         create_btn.setOnClickListener(v -> {
             create_btn.startAnimation(clickAnimation());
             mp.start();
             dialog.dismiss();
             Dialog dialog1 = new Dialog(MainActivity.this);
             dialog1.setContentView(R.layout.game_id_dialog);
+            Integer newArray[] = new Integer[49];
+            TextView gameIdText = (TextView) dialog1.findViewById(R.id.game_id);
+            game g = new game(Arrays.asList(newArray),"black", false, preferencesLogin.getString("username", "Guest"), "Not yet joined", false);
+            DocumentReference newGame = db.collection("games").document();
+            newGame.set(g);
+            String id = (String) newGame.getId();
+            gameIdText.setText(id);
+            editor.putBoolean("iswhite", false);
+            editor.putString("gameid", id);
+            editor.commit();
             dialog1.show();
+
+            Intent i = new Intent(getApplicationContext(), OnlineGameplayActivity.class);
+            startActivity(i);
+            finish();
         });
 
         join_btn.setOnClickListener(v -> {
@@ -153,7 +180,34 @@ public class MainActivity extends AppCompatActivity {
             dialog.dismiss();
             Dialog dialog1 = new Dialog(MainActivity.this);
             dialog1.setContentView(R.layout.join_game_dialog);
+            EditText gameID = (EditText) dialog1.findViewById(R.id.game_id);
+            Button join = (Button) dialog1.findViewById(R.id.join_btn);
             dialog1.show();
+
+            join.setOnClickListener(v1 -> {
+                String id = gameID.getText().toString();
+                DocumentReference newGame = db.collection("games").document(id);
+                newGame.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()){
+                                editor.putBoolean("iswhite", true);
+                                editor.putString("gameid", id);
+                                editor.commit();
+                                Intent i = new Intent(getApplicationContext(), OnlineGameplayActivity.class);
+                                finish();
+                                startActivity(i);
+                            } else {
+                                //warning that game doesnt exist or something
+                            }
+                        } else {
+                            //getfailed
+                        }
+                    }
+                });
+            });
         });
 
         dialog.show();
@@ -223,5 +277,50 @@ public class MainActivity extends AppCompatActivity {
                 exit.startAnimation(clickAnimation());
                 customLogoutDialog();
         });
+    }
+
+    public class game{
+        private List<Integer> board;
+        private String turn;
+        private Boolean finished;
+        private String player1;
+        private String player2;
+        private Boolean Passed;
+
+        game(List<Integer> sboard, String sturn, Boolean sfinished, String splayer1, String splayer2, Boolean spassed){
+            turn = sturn;
+            finished = sfinished;
+            board = sboard;
+            player1 = splayer1;
+            player2 = splayer2;
+            Passed = spassed;
+            for(int i = 0; i < 49; i++){
+                board.set(i, 0);
+            }
+        }
+
+        public List<Integer> getBoard() {
+            return board;
+        }
+
+        public Boolean getFinished() {
+            return finished;
+        }
+
+        public String getTurn() {
+            return turn;
+        }
+
+        public String getPlayer1() {
+            return player1;
+        }
+
+        public Boolean getPassed() {
+            return Passed;
+        }
+
+        public String getPlayer2() {
+            return player2;
+        }
     }
 }

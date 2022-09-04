@@ -35,7 +35,7 @@
         <!-- random ID Text View -->
         <EditText
             android:id="@+id/game_id"
-            android:inputType="number"
+            android:inputType="text"
             android:layout_width="250dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
