@@ -69,6 +69,7 @@
                 android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:hint="Name"
+                android:maxLength="10"
                 android:textAlignment="center" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -108,6 +109,7 @@
                 android:hint="Name"
                 android:layout_gravity="center"
                 android:textAlignment="center"
+                android:maxLength="10"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

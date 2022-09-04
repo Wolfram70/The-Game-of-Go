@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.widget.Button;
@@ -29,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
             String name_1  = player_1.getText().toString();
             String name_2 = player_2.getText().toString();
 
-            dialog.dismiss();
-
             SharedPreferences preference = getSharedPreferences("OfflinePlayers", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preference.edit();
 
@@ -38,10 +37,15 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("player2", name_2);
             editor.commit();
 
-            Intent i = new Intent(getApplicationContext(), OfflineGameplayActivity.class);
-            finish();
-            startActivity(i);
-
+            if (name_1.isEmpty() || name_2.isEmpty()) {
+                return;
+            }
+            else {
+                dialog.dismiss();
+                Intent i = new Intent(getApplicationContext(), OfflineGameplayActivity.class);
+                finish();
+                startActivity(i);
+            }
         });
 
         dialog.show();
@@ -160,7 +164,13 @@ public class MainActivity extends AppCompatActivity {
         Button exit = (Button) findViewById(R.id.Exit);
         Button online_play = (Button) findViewById(R.id.online_play);
         Button offline_play = (Button) findViewById(R.id.offline_play);
+        Button howToPlay = (Button) findViewById(R.id.how_to_play);
         online_play.setOnClickListener(view -> onlinePlayDialog());
+
+        howToPlay.setOnClickListener(view2 -> {
+            Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("https://www.britgo.org/intro/intro2.html"));
+            startActivity(viewIntent);
+        });
 
         offline_play.setOnClickListener(view -> {
             customPlayOfflineDialog();

@@ -118,8 +118,8 @@ public class OfflineGameplayActivity extends AppCompatActivity {
         blackCapturesText = findViewById(R.id.user_cptr);
         whiteCapturesText = findViewById(R.id.opp_cptr);
 
-        blackCapturesText.setText(blackCaptures + "Captures");
-        whiteCapturesText.setText(whiteCaptures + "Captures");
+        blackCapturesText.setText(blackCaptures + " Captures");
+        whiteCapturesText.setText(whiteCaptures + " Captures");
 
         SharedPreferences preferences = getSharedPreferences("OfflinePlayers", Context.MODE_PRIVATE);
         player_1 = preferences.getString("player1", "Player 1");
@@ -268,6 +268,8 @@ public class OfflineGameplayActivity extends AppCompatActivity {
                 playerPanel1.setBackgroundResource(R.drawable.gplay_panel_focus);
                 playerPanel2.setBackgroundResource(R.drawable.gplay_panel);
             }
+            Pass2.setText("PASS");
+            Pass1.setText("PASS");
             noSu.setText("");
         }
         else {
