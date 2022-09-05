@@ -21,17 +21,17 @@
         app:srcCompat="@drawable/go_head" />
 
     <Button
-        android:id="@+id/_1player"
+        android:id="@+id/online_play"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/menu_btn_bg"
-        android:drawableEnd="@drawable/_1player"
+        android:drawableEnd="@drawable/online_play"
         android:paddingStart="40dp"
-        android:paddingTop="10dp"
+        android:paddingTop="13dp"
         android:paddingEnd="20dp"
-        android:paddingBottom="10dp"
-        android:text="Single Player"
+        android:paddingBottom="13dp"
+        android:text="Play Online"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textSize="34sp"
@@ -58,27 +58,27 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_2player"
+        app:layout_constraintTop_toBottomOf="@+id/offline_play"
         app:layout_constraintWidth_percent=".8" />
 
     <Button
-        android:id="@+id/_2player"
+        android:id="@+id/offline_play"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:paddingStart="40dp"
+        android:paddingStart="30dp"
         android:paddingEnd="20dp"
         android:drawableEnd="@drawable/_2player"
         android:background="@drawable/menu_btn_bg"
-        android:text="Two Player"
+        android:text="Play Offline"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_1player"
+        app:layout_constraintTop_toBottomOf="@+id/online_play"
         app:layout_constraintWidth_percent=".8" />
 
     <Button
@@ -101,12 +101,50 @@
         app:layout_constraintTop_toBottomOf="@+id/options"
         app:layout_constraintWidth_percent=".8" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Logged in as:"
+        android:textAlignment="center"
+        android:textColor="#FFFF0000"
+        android:textColorHint="#75B87575"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/how_to_play"
+        app:layout_constraintWidth_percent=".8" />
+
+    <TextView
+        android:id="@+id/LoginInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Guest"
+        android:textAlignment="center"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#75B87575"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/how_to_play"
+        app:layout_constraintWidth_percent=".8" />
+
     <Button
         android:id="@+id/Exit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/exit_btn_bg"
-        android:text="Exit"
+        android:textAllCaps="false"
+        android:text="Logout"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:textSize="34sp"

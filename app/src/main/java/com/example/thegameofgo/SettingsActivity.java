@@ -1,5 +1,6 @@
 package com.example.thegameofgo;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -12,6 +13,18 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         Button back = (Button) findViewById(R.id.back);
-        back.setOnClickListener(view -> finish());
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
+
+        back.setOnClickListener(view -> {
+            mp.start();
+            finish();
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
+        mp.start();
+        finish();
     }
 }

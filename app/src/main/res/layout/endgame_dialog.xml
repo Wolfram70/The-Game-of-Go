@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_exit_linear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_round"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <!-- Game Paused Textview-->
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="00dp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="White wins !"
+        android:textColor="#F6D6A4"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <!-- Alert  Icon  ImageView -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <!-- Black -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
+            <TextView
+                android:id="@+id/black_player"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/popup_btn"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:text="player 1"
+                android:drawablePadding="20dp"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/black_user" />
+            <TextView
+                android:id="@+id/black_score"
+                android:layout_width="70dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/popup_btn"
+                android:text="0"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/white_player"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/popup_btn"
+                android:drawablePadding="20dp"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:text="player 2"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:drawableStartCompat="@drawable/white_player" />
+
+            <TextView
+                android:id="@+id/white_score"
+                android:layout_width="70dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/popup_btn"
+                android:gravity="center"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="25sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/game_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="player1 wins by X points"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+
+            />
+
+
+        <Button
+            android:id="@+id/back"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_btn_bg"
+            android:text="Main Menu"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
